@@ -52,7 +52,7 @@ public class LivroControllerV1 {
 			@RequestParam(value = "page", required = false, defaultValue = "0") int page,
 			@RequestParam(value = "size", required = false, defaultValue = "10") int size) {
 		return listPageLivroService.findPage(titulo, page, size);
-
+	}
 	@GetMapping
 	public List<LivroDTO> findAll() {
 		return LivroDTO.fromAll(listLivroService.findAll());
