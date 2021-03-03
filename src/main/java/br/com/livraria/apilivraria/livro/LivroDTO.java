@@ -1,14 +1,15 @@
 package br.com.livraria.apilivraria.livro;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.livraria.apilivraria.categorialivro.CategoriaLivro;
 import lombok.AllArgsConstructor;
@@ -35,8 +36,9 @@ public class LivroDTO {
 	@NotEmpty
 	private String autor;
 	@NotNull
-	@DateTimeFormat(pattern = "yyyy")
-	private Date anoDePublicação;
+	@PastOrPresent
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern  = "yyyy-MM-dd")
+	private LocalDate anoDePublicacao  ;
 	@Positive
 	@NotNull
 	private Float precoParaVenda;
@@ -46,10 +48,12 @@ public class LivroDTO {
 
 	@NotEmpty
 	private List<CategoriaLivro> categoriasLivro;
+	
 
 	public static LivroDTO from(Livro livro) {
+		
 		return LivroDTO.builder().id(livro.getId()).titulo(livro.getTitulo()).isbn(livro.getIsbn())
-				.autor(livro.getAutor()).anoDePublicação(livro.getAnoDePublicação())
+				.autor(livro.getAutor()).anoDePublicacao(livro.getAnoDePublicacao())
 				.precoParaVenda(livro.getPrecoParaVenda()).quantidadeDisponivel(livro.getQuantidadeDisponivel())
 				.categoriasLivro(livro.getCategoriasLivro()).sinopse(livro.getSinopse()).build();
 	}

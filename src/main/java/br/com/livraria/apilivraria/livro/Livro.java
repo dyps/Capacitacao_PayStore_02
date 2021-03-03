@@ -1,9 +1,10 @@
 package br.com.livraria.apilivraria.livro;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -47,11 +48,11 @@ public class Livro implements Serializable {
 	private String sinopse;
 	private String isbn;
 	private String autor;
-	private Date anoDePublicação;
+	private LocalDate anoDePublicacao;
 	private Float precoParaVenda;
 	private Integer quantidadeDisponivel;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
 	private List<CategoriaLivro> categoriasLivro;
 	
 	@JsonIgnore
@@ -60,9 +61,10 @@ public class Livro implements Serializable {
 
 	public static Livro to(@Valid LivroDTO livroDTO) {
 			return Livro.builder().id(livroDTO.getId()).titulo(livroDTO.getTitulo()).isbn(livroDTO.getIsbn())
-					.autor(livroDTO.getAutor()).anoDePublicação(livroDTO.getAnoDePublicação())
+					.autor(livroDTO.getAutor()).anoDePublicacao(livroDTO.getAnoDePublicacao())
 					.precoParaVenda(livroDTO.getPrecoParaVenda()).quantidadeDisponivel(livroDTO.getQuantidadeDisponivel())
 					.categoriasLivro(livroDTO.getCategoriasLivro()).sinopse(livroDTO.getSinopse()).build();
 	}
 
+	
 }

@@ -3,6 +3,7 @@ package br.com.livraria.apilivraria.categorialivro;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -44,7 +45,7 @@ public class CategoriaLivro implements Serializable {
 	private String nome;
 
 	@JsonIgnore
-	@ManyToMany(mappedBy = "categoriasLivro", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "categoriasLivro", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Livro> livros;
 	
 	public static CategoriaLivro to(@Valid CategoriaLivroDTO clienteDTO) {

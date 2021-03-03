@@ -20,7 +20,7 @@ public class UpdateLivroServiceImpl implements UpdateLivroService {
 		livro.setSinopse(newLivro.getSinopse());
 		livro.setIsbn(newLivro.getIsbn());
 		livro.setAutor(newLivro.getAutor());
-		livro.setAnoDePublicação(newLivro.getAnoDePublicação());
+		livro.setAnoDePublicacao(newLivro.getAnoDePublicacao());
 		livro.setPrecoParaVenda(newLivro.getPrecoParaVenda());
 		livro.setQuantidadeDisponivel(newLivro.getQuantidadeDisponivel());
 		livro.setCategoriasLivro(newLivro.getCategoriasLivro());
