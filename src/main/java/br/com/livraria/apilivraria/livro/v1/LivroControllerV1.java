@@ -53,12 +53,6 @@ public class LivroControllerV1 {
 			@RequestParam(value = "size", required = false, defaultValue = "10") int size) {
 		return listPageLivroService.findPage(titulo, page, size);
 
-    @ResponseStatus(code = HttpStatus.CREATED)
-    @PostMapping //adiciona um novo Livro
-    public void insert(@Valid @RequestBody LivroDTO livroDTO) {
-        saveLivroService.insert(Livro.to(livroDTO));
-    }
-
 	@GetMapping
 	public List<LivroDTO> findAll() {
 		return LivroDTO.fromAll(listLivroService.findAll());
