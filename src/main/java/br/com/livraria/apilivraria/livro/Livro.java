@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -42,6 +43,7 @@ public class Livro implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LivroSeq")
 	@SequenceGenerator(name = "LivroSeq", sequenceName = "LIVRO_SEQ", allocationSize = 1)
+	@NotNull // para validar ao ser puxado pela compra
 	private Long id;
 
 	private String titulo;
@@ -52,19 +54,18 @@ public class Livro implements Serializable {
 	private Float precoParaVenda;
 	private Integer quantidadeDisponivel;
 
-	@ManyToMany(fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<CategoriaLivro> categoriasLivro;
-	
+
 	@JsonIgnore
-	@ManyToMany
+	@ManyToMany(mappedBy = "livros",cascade = CascadeType.MERGE)
 	private List<Compra> compras;
 
 	public static Livro to(@Valid LivroDTO livroDTO) {
-			return Livro.builder().id(livroDTO.getId()).titulo(livroDTO.getTitulo()).isbn(livroDTO.getIsbn())
-					.autor(livroDTO.getAutor()).anoDePublicacao(livroDTO.getAnoDePublicacao())
-					.precoParaVenda(livroDTO.getPrecoParaVenda()).quantidadeDisponivel(livroDTO.getQuantidadeDisponivel())
-					.categoriasLivro(livroDTO.getCategoriasLivro()).sinopse(livroDTO.getSinopse()).build();
+		return Livro.builder().id(livroDTO.getId()).titulo(livroDTO.getTitulo()).isbn(livroDTO.getIsbn())
+				.autor(livroDTO.getAutor()).anoDePublicacao(livroDTO.getAnoDePublicacao())
+				.precoParaVenda(livroDTO.getPrecoParaVenda()).quantidadeDisponivel(livroDTO.getQuantidadeDisponivel())
+				.categoriasLivro(livroDTO.getCategoriasLivro()).sinopse(livroDTO.getSinopse()).build();
 	}
 
-	
 }

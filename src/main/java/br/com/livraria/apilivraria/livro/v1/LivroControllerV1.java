@@ -1,5 +1,6 @@
 package br.com.livraria.apilivraria.livro.v1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -24,9 +25,9 @@ import br.com.livraria.apilivraria.livro.LivroDTO;
 import br.com.livraria.apilivraria.livro.services.DeleteLivroService;
 import br.com.livraria.apilivraria.livro.services.GetLivroService;
 import br.com.livraria.apilivraria.livro.services.ListLivroService;
+import br.com.livraria.apilivraria.livro.services.ListPageLivroService;
 import br.com.livraria.apilivraria.livro.services.SaveLivroService;
 import br.com.livraria.apilivraria.livro.services.UpdateLivroService;
-import br.com.livraria.apilivraria.livro.services.ListPageLivroService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -35,7 +36,7 @@ import lombok.RequiredArgsConstructor;
 public class LivroControllerV1 {
 
 	private final GetLivroService getLivroService;
-	private final GetCategoriaLivroService getcategoriaLivroService;
+	private final GetCategoriaLivroService getCategoriaLivroService;
 	private final ListLivroService listLivroService;
 	private final SaveLivroService saveLivroService;
 	private final UpdateLivroService updateLivroService;
@@ -48,11 +49,12 @@ public class LivroControllerV1 {
 	}
 
 	@GetMapping("/search")
-	public Page<Livro> search(@RequestParam(value = "titulo", required = false , defaultValue = "" ) String titulo,
+	public Page<Livro> search(@RequestParam(value = "titulo", required = false, defaultValue = "") String titulo,
 			@RequestParam(value = "page", required = false, defaultValue = "0") int page,
 			@RequestParam(value = "size", required = false, defaultValue = "10") int size) {
 		return listPageLivroService.findPage(titulo, page, size);
 	}
+
 	@GetMapping
 	public List<LivroDTO> findAll() {
 		return LivroDTO.fromAll(listLivroService.findAll());
@@ -60,14 +62,16 @@ public class LivroControllerV1 {
 
 	@GetMapping(value = "/categoria/{id}")
 	public List<LivroDTO> findAllPorCat(@PathVariable("id") Long id) {
-		return LivroDTO.fromAll(getcategoriaLivroService.find(id).getLivros());
+		return LivroDTO.fromAll(getCategoriaLivroService.find(id).getLivros());
 	}
 
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping // adiciona um novo Livro
 	public void insert(@Valid @RequestBody LivroDTO livroDTO) {
+		List<CategoriaLivro> categorias = new ArrayList<CategoriaLivro>();
 		for (CategoriaLivro iterable_element : livroDTO.getCategoriasLivro())
-			getcategoriaLivroService.find(iterable_element.getId());
+			categorias.add(getCategoriaLivroService.find(iterable_element.getId()));
+		livroDTO.setCategoriasLivro(categorias);
 		saveLivroService.insert(Livro.to(livroDTO));
 	}
 
@@ -75,7 +79,7 @@ public class LivroControllerV1 {
 	@PutMapping(value = "/{id}") // atualizar um Livro
 	public void update(@Valid @RequestBody LivroDTO livroDTO, @PathVariable Long id) {
 		for (CategoriaLivro iterable_element : livroDTO.getCategoriasLivro())
-			getcategoriaLivroService.find(iterable_element.getId());
+			getCategoriaLivroService.find(iterable_element.getId());
 		updateLivroService.update(Livro.to(livroDTO), id);
 	}
 

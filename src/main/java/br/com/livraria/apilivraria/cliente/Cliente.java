@@ -3,6 +3,7 @@ package br.com.livraria.apilivraria.cliente;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,6 +15,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -41,6 +43,7 @@ public class Cliente implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ClienteSeq")
 	@SequenceGenerator(name = "ClienteSeq", sequenceName = "CLIENTE_SEQ", allocationSize = 1)
+	@NotNull //para validar ao ser puxado pela compra
 	private Long id;
 
 	private String nome;
@@ -52,7 +55,7 @@ public class Cliente implements Serializable {
 	private Sexo sexo;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
 	private List<Compra> compras;
 
 	public static Cliente to(@Valid ClienteDTO clienteDTO) {
