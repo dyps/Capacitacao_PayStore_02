@@ -8,4 +8,5 @@ create table tb_livro (
         sinopse varchar(255),
         titulo varchar(255),
         primary key (id)
-    )
+    );
+create sequence livro_seq start 1 increment 1

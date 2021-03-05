@@ -37,21 +37,19 @@ public class LivroDTO {
 	private String autor;
 	@NotNull
 	@PastOrPresent
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern  = "yyyy-MM-dd")
-	private LocalDate anoDePublicacao  ;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private LocalDate anoDePublicacao;
 	@Positive
 	@NotNull
 	private Float precoParaVenda;
 	@Positive
 	@NotNull
 	private Integer quantidadeDisponivel;
-
 	@NotEmpty
 	private List<CategoriaLivro> categoriasLivro;
-	
 
 	public static LivroDTO from(Livro livro) {
-		
+
 		return LivroDTO.builder().id(livro.getId()).titulo(livro.getTitulo()).isbn(livro.getIsbn())
 				.autor(livro.getAutor()).anoDePublicacao(livro.getAnoDePublicacao())
 				.precoParaVenda(livro.getPrecoParaVenda()).quantidadeDisponivel(livro.getQuantidadeDisponivel())

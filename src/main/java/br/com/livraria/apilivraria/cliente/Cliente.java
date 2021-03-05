@@ -55,7 +55,7 @@ public class Cliente implements Serializable {
 	private Sexo sexo;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cliente",cascade = CascadeType.REMOVE)
 	private List<Compra> compras;
 
 	public static Cliente to(@Valid ClienteDTO clienteDTO) {

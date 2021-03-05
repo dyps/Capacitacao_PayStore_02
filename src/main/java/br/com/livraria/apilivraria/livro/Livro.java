@@ -54,11 +54,11 @@ public class Livro implements Serializable {
 	private Float precoParaVenda;
 	private Integer quantidadeDisponivel;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
 	private List<CategoriaLivro> categoriasLivro;
 
 	@JsonIgnore
-	@ManyToMany(mappedBy = "livros",cascade = CascadeType.MERGE)
+	@ManyToMany(mappedBy = "livros",cascade = CascadeType.REMOVE)
 	private List<Compra> compras;
 
 	public static Livro to(@Valid LivroDTO livroDTO) {

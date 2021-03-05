@@ -45,7 +45,7 @@ public class CategoriaLivro implements Serializable {
 	private String nome;
 
 	@JsonIgnore
-	@ManyToMany(mappedBy = "categoriasLivro", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "categoriasLivro", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Livro> livros;
 	
 	public static CategoriaLivro to(@Valid CategoriaLivroDTO clienteDTO) {

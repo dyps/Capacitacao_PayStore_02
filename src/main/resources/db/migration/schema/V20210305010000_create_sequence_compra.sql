@@ -1,1 +1,0 @@
-create sequence compra_seq start 1 increment 1

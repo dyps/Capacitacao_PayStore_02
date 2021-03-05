@@ -6,4 +6,5 @@ create table tb_cliente (
         sexo varchar(255),
         telefone varchar(255),
         primary key (id)
-    )
+    );
+create sequence cliente_seq start 1 increment 1
