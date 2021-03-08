@@ -6,7 +6,7 @@ spring:
       ddl-auto: validete
   flyway:
     baseline-on-migrate: false
-    enabled: true
+    enabled: true  
     locations: classpath:/db/migration
     schemas: public
     default-schema: public 

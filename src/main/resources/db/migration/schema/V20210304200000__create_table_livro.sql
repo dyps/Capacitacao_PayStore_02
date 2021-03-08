@@ -1,12 +1,12 @@
-create table tb_livro (
+create table tb_book (
        id int8 not null,
-        ano_de_publicacao date,
-        autor varchar(255),
+        author varchar(255),
+        available_quantity int4,
         isbn varchar(255),
-        preco_para_venda float4,
-        quantidade_disponivel int4,
-        sinopse varchar(255),
-        titulo varchar(255),
+        price_sale float4,
+        synopsis varchar(255),
+        title varchar(255),
+        year_publication date,
         primary key (id)
     );
-create sequence livro_seq start 1 increment 1
+create sequence book_seq start 1 increment 1

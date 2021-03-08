@@ -1,10 +1,10 @@
-create table tb_compra (
+  create table tb_purchase (
        id int8 not null,
-       concluida boolean,
-       data_da_compra date,
-       valor_total float4,
-       cliente_id int8,
-       primary key (id),
-       constraint cliente_id_fk foreign key (cliente_id) references tb_cliente(id)
+        amount float4,
+        completed boolean,
+        date_purchase date,
+        client_id int8,
+        primary key (id),
+        constraint client_idFK foreign key (client_id) references tb_client
     );
-create sequence compra_seq start 1 increment 1
+create sequence purchase_seq start 1 increment 1
