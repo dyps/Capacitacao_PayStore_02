@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class ListPageClienteServiceImpl implements ListPageClientService{
+public class ListPageClientServiceImpl implements ListPageClientService{
 	
 	private final ClientRepository clientRepository;
 	
