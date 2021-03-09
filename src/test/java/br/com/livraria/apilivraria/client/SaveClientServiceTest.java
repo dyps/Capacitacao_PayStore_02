@@ -23,12 +23,12 @@ import static org.mockito.Mockito.verify;
 public class SaveClientServiceTest {
 
     @Mock
-    private ClientRepository bookRepository;
+    private ClientRepository clientRepository;
     private SaveClientServiceImpl saveClient;
 
     @BeforeEach
     public void setUp() {
-        this.saveClient = new SaveClientServiceImpl(bookRepository);
+        this.saveClient = new SaveClientServiceImpl(clientRepository);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class SaveClientServiceTest {
 
         saveClient.insert(createClient().build());
         ArgumentCaptor<Client> captorClient = ArgumentCaptor.forClass(Client.class);
-        verify(bookRepository).save(captorClient.capture());
+        verify(clientRepository).save(captorClient.capture());
         Client result = captorClient.getValue();
         assertAll("client",
                 () -> assertThat(result.getName(), is("teste nome")),

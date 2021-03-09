@@ -23,12 +23,12 @@ import static org.mockito.Mockito.verify;
 public class SaveBookCategoryServiceTest {
 
     @Mock
-    private BookCategoryRepository bookRepository;
+    private BookCategoryRepository bookCategoryRepository;
     private SaveBookCategoryServiceImpl saveBookCategory;
 
     @BeforeEach
     public void setUp() {
-        this.saveBookCategory = new SaveBookCategoryServiceImpl(bookRepository);
+        this.saveBookCategory = new SaveBookCategoryServiceImpl(bookCategoryRepository);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class SaveBookCategoryServiceTest {
 
         saveBookCategory.insert(createBookCategory().build());
         ArgumentCaptor<BookCategory> captorBookCategory = ArgumentCaptor.forClass(BookCategory.class);
-        verify(bookRepository).save(captorBookCategory.capture());
+        verify(bookCategoryRepository).save(captorBookCategory.capture());
         BookCategory result = captorBookCategory.getValue();
         assertAll("bookcategory",
                 () -> assertThat(result.getName(), is("Ação"))

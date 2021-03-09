@@ -1,0 +1,7 @@
+{
+    "client" : { "id" : 1},
+    "datePurchase" : "2021-01-01",
+    "amount":"1",
+    "completed":"true",
+    "books":[{"id":1}]
+}

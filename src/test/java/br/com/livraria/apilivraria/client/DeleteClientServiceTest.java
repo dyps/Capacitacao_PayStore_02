@@ -21,7 +21,7 @@ import br.com.livraria.apilivraria.exceptions.ClientNotDeletedException;
 
 @ExtendWith(MockitoExtension.class)
 @Tag("service")
-@DisplayName("Valida funcionalidade do serviço responsável por deletar um client")
+@DisplayName("Valida funcionalidade do serviço responsável por deletar um cliente")
 public class DeleteClientServiceTest {
 
     @Mock
