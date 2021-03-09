@@ -41,7 +41,7 @@ import br.com.livraria.apilivraria.client.v1.ClientControllerV1;
 @Tag("Controller")
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = ClientControllerV1.class)
-@DisplayName("Valida funcionalidade do Controller Client")
+@DisplayName("Valida funcionalidade do Controller Cliente")
 public class ClientControllerTest{
 
     @Autowired

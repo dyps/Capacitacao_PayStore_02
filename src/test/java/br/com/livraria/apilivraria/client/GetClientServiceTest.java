@@ -44,8 +44,6 @@ public class GetClientServiceTest {
         );
 
         Client result = this.findClient.find(1L);
-
-        //verificação
         assertAll("client",
                 () -> assertThat(result.getName(), is("Nome Teste GET")),
                 () -> assertThat(result.getAge(), is(22)),

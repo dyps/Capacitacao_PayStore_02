@@ -34,7 +34,7 @@ public class ListPageClientServiceTest {
 	}
 
 	@Test
-	@DisplayName("Deve retornar todos os livros com paginação")
+	@DisplayName("Deve retornar todos os clientes com paginação")
 	void shouldFindAllClient() {
 		when(listPageClient.findPage("", 0, 2))
 				.thenReturn(new PageImpl<>(Collections.nCopies(2, createClient().build())));

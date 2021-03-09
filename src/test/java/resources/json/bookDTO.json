@@ -1,0 +1,12 @@
+{
+    "title" : "Maze runer",
+    "availableQuantity" : 1,
+    "priceSale": 2,
+    "synopsis" : "Correr ou morrer",
+    "bookCategories": [{
+        "id": 1
+        }],
+    "yearPublication" :"2000-02-02",
+    "author" : "yaggo",
+    "isbn" : 122
+}

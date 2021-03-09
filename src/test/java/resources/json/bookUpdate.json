@@ -1,0 +1,12 @@
+{
+    "title" : "Maze runer 2",
+    "availableQuantity" : 2,
+    "priceSale": 3,
+    "synopsis" : "Prova de Fogo",
+    "bookCategories": [{
+        "id": 2
+        }],
+    "yearPublication" :"2000-02-03",
+    "author" : "yaggo2",
+    "isbn" : 123
+}

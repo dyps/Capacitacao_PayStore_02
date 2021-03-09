@@ -34,7 +34,7 @@ public class DeleteClientServiceTest {
     }
 
     @Test
-    @DisplayName("Deve deletar um livro")
+    @DisplayName("Deve deletar um cliente")
     void shouldClientDeleted() {
         when(clientRepository.existsById(1L)).thenReturn(true);
         deleteClient.delete(1L);
